@@ -8,10 +8,8 @@ import GlobalStyles from "./themes/GlobalStyles"
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <>
-      <GlobalStyles />
-      <App />
-    </>
+    <GlobalStyles />
+    <App />
   </ThemeProvider>,
   document.getElementById("root")
 )

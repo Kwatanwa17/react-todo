@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { TaskInput, TaskList } from "./components"
 import { Task } from "./types"
+import { Layout } from "./layout"
 
 const initialState: Task[] = [
   {
@@ -18,12 +19,7 @@ const initialState: Task[] = [
 const App: React.FC = () => {
   const [tasks, setTasks] = useState(initialState)
 
-  return (
-    <div>
-      <TaskInput setTasks={setTasks} tasks={tasks} />
-      <TaskList setTasks={setTasks} tasks={tasks} />
-    </div>
-  )
+  return <Layout>fhsaiog;h</Layout>
 }
 
 export default App
