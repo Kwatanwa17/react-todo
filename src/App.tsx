@@ -1,7 +1,7 @@
-import React from "react"
-import { Route, Switch, Redirect } from "react-router-dom"
-import { Layout } from "./layout"
-import { Home, Todos } from "./containers"
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { Layout } from './layout';
+import { Home, Todos } from './containers';
 
 const App = () => {
   return (
@@ -12,6 +12,6 @@ const App = () => {
         <Redirect to="/" />
       </Switch>
     </Layout>
-  )
-}
-export default App
+  );
+};
+export default App;
