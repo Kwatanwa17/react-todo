@@ -1,25 +1,17 @@
 import React, { useState } from "react"
-import { TaskInput, TaskList } from "./components"
-import { Task } from "./types"
+import { Route, Switch, Redirect } from "react-router-dom"
 import { Layout } from "./layout"
+import { Home, Todos } from "./containers"
 
-const initialState: Task[] = [
-  {
-    id: 2,
-    title: "次にやるやつ",
-    done: false,
-  },
-  {
-    id: 1,
-    title: "はじめにやるやつ",
-    done: true,
-  },
-]
-
-const App: React.FC = () => {
-  const [tasks, setTasks] = useState(initialState)
-
-  return <Layout>fhsaiog;h</Layout>
+const App = () => {
+  return (
+    <Layout>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/todos" component={Todos} />
+        <Redirect to="/" />
+      </Switch>
+    </Layout>
+  )
 }
-
 export default App

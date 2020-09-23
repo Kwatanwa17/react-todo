@@ -23,44 +23,10 @@ const GlobalStyles = createGlobalStyle`
     margin:0;
     padding:0;
 
-   @media ${Device.smallOnly} {
-      font-size: 90%;
-     }
-     
-   @media ${Device.mobile} {
-    font-size: 100%;
+    a {
+      text-decoration: none;
     }
 
-  body {
-    width: 100%;
-    height: 100%;
-    line-height: 1.5;
-    letter-spacing: 0;
-    background-color: '#C6CACC';
-    color: #20201B;
-  }
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    text-align: left;
-  }
-
-  ol {
-    text-align: left;
-  }
-
-  li {
-    /* font-size:0.8rem; */
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  footer, header {
-    background-color: #003300;
-  }
 
   `
 

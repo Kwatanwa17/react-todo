@@ -2,10 +2,12 @@ import React from "react"
 import styled from "styled-components"
 import { Logo } from "../../../components"
 import { Container } from "../../../elements"
+import NavItems from "../NavItems/NavItems"
 
 const FixedWrapper = styled.div`
   position: fixed;
-  background-color: ${({ theme }) => theme.colors.background1};
+  /* background-color: ${({ theme }) => theme.colors.background2}; */
+  background-color: black;
   padding: 0rem 2rem;
   top: 0;
   left: 0;
@@ -24,11 +26,7 @@ export default () => {
       <Container>
         <FlexWrapper>
           <Logo />
-          <nav>
-            <ul>
-              <li>navbarnavbar</li>
-            </ul>
-          </nav>
+          <NavItems />
         </FlexWrapper>
       </Container>
     </FixedWrapper>
