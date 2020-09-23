@@ -5,7 +5,8 @@ require('dotenv').config();
 
 // TODO: add env variables
 const config = {
-  apiKey: process.env.REACT_API_KEY,
+  // apiKey: process.env.REACT_API_KEY,
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: 'todos-8fa8e.firebaseapp.com',
   databaseURL: 'https://todos-8fa8e.firebaseio.com',
   projectId: 'todos-8fa8e',
