@@ -1,9 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { Logo } from "../../../components"
-import { Container } from "../../../elements"
-import NavItems from "../NavItems/NavItems"
-
+import Hamburger from "./Hamburger/Hamburger"
 import { Device } from "../../../utils"
 
 const FixedWrapper = styled.div`
@@ -15,9 +13,10 @@ const FixedWrapper = styled.div`
   left: 0;
   width: 100%;
   height: 6rem;
+  display: none;
 
   @media ${Device.smallOnly} {
-    display: none;
+    display: flex;
   }
 `
 
@@ -25,16 +24,19 @@ const FlexWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
+  align-items: center;
 `
-export default () => {
+const SideDrawer = () => {
+  const [isOpened, setIsOpened] = useState(false)
   return (
     <FixedWrapper>
-      <Container>
-        <FlexWrapper>
-          <Logo />
-          <NavItems />
-        </FlexWrapper>
-      </Container>
+      <FlexWrapper>
+        <Logo />
+        <Hamburger opened={isOpened} clicked={() => setIsOpened(!isOpened)} />
+      </FlexWrapper>
     </FixedWrapper>
   )
 }
+
+export default SideDrawer
