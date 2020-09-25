@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Task } from "../types";
+import React, { useState } from 'react';
+import { Task } from '../../types';
 
 type Props = {
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
@@ -7,7 +7,7 @@ type Props = {
 };
 
 const TaskInput: React.FC<Props> = ({ setTasks, tasks }) => {
-  const [inputTitle, setInputTitle] = useState<string>("");
+  const [inputTitle, setInputTitle] = useState<string>('');
   const [count, setCount] = useState<number>(tasks.length + 1);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,7 @@ const TaskInput: React.FC<Props> = ({ setTasks, tasks }) => {
     };
 
     setTasks([newTask, ...tasks]);
-    setInputTitle("");
+    setInputTitle('');
   };
 
   return (

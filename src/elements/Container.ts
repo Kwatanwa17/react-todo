@@ -1,8 +1,20 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
-export default styled.div`
+export const Container = styled.div`
   width: 100%;
   max-width: 140rem;
   margin: 0 auto;
   height: 100%;
-`
+`;
+
+export const FormWrapper = styled.div`
+  width: 100%;
+  max-width: 90rem;
+  border-radius: 1rem;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: grey;
+  /* box-shadow: 0rem 0.5rem S */
+`;

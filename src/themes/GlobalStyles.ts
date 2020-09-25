@@ -1,8 +1,17 @@
-import { createGlobalStyle } from "styled-components"
-import { Device } from "../utils"
+import { createGlobalStyle } from 'styled-components';
+import { Device } from '../utils';
 
 const GlobalStyles = createGlobalStyle`
- 
+
+    :root {
+      --color-main: ${props => props.theme.colors.main};
+      --color-mainDark: ${props => props.theme.colors.mainDark};
+      --color-mainLight: ${props => props.theme.colors.mainLight};
+      --color-text: #333;
+      --color-white: #fff;
+      --color-shadow: rgba(0,0,0,.2);
+    }
+
     *, *:before, *:after {
     box-sizing: border-box;
     margin:0;
@@ -28,6 +37,6 @@ const GlobalStyles = createGlobalStyle`
     }
 
 
-  `
+  `;
 
-export default GlobalStyles
+export default GlobalStyles;

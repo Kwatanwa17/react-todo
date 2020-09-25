@@ -1,5 +1,5 @@
-import React from "react";
-import { Task } from "../types";
+import React from 'react';
+import { Task } from '../../types';
 
 type Props = {
   task: Task;
@@ -9,7 +9,7 @@ type Props = {
 
 const TaskItem: React.FC<Props> = ({ task, handleDone, handleDelete }) => {
   return (
-    <li className={task.done ? "done" : ""}>
+    <li className={task.done ? 'done' : ''}>
       <label>
         <input
           type="checkbox"
