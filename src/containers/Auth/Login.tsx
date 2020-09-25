@@ -1,10 +1,9 @@
 import React from 'react';
-import { Formik, Field } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { Input } from '../../components';
-import { FormWrapper } from '../../elements';
-import { Form } from '../../elements';
+import { Button, Input } from '../../components';
+import { Form, FormWrapper } from '../../elements';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -35,13 +34,15 @@ const Login = () => {
               placeholder="メールアドレス"
               component={Input}
             />
+            <ErrorMessage name="email" />
             <Field
               type="password"
               name="password"
               placeholder="パスワード"
               component={Input}
             />
-            <button type="submit">送信</button>
+            <ErrorMessage name="password" />
+            <Button type="submit">送信</Button>
           </Form>
         </FormWrapper>
       )}

@@ -5,3 +5,4 @@ export { default as Navbar } from './Navigation/Navbar/Navbar';
 export { default as Logo } from './Logo/Logo';
 export { default as SideDrawer } from './Navigation/SideDrawer/SideDrawer';
 export { default as Input } from './Form/Input/Input';
+export { default as Button } from './Form/Button/Button';

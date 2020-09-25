@@ -34,18 +34,18 @@ const Error = styled.div<{ show: boolean }>`
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   opacity: ${({ show }) => (show ? '1' : '0')};
   transition: all 0.1s;
-  padding: 0rem 2rem;
+  padding: 0  2rem;
   font-weight: 500;
 `;
 
 const Input = ({ field, form: { touched, errors }, ...props }) => {
   return (
-    <InputWrapper>
+    /* <InputWrapper>
       <StyledInput {...field} {...props} />
-      <Error show={errors[field.name] && touched[field.name]}>
-        {errors[field.name]}
+      <Error show={errors[field.name] && touched[field.name]}>{errors[field.name]}
       </Error>
-    </InputWrapper>
+    </InputWrapper> */
+    <StyledInput />
   );
 };
 

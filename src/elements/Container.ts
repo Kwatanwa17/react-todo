@@ -9,12 +9,12 @@ export const Container = styled.div`
 
 export const FormWrapper = styled.div`
   width: 100%;
-  max-width: 90rem;
+  max-width: 60rem;
   border-radius: 1rem;
-  padding: 3rem 2rem;
+  padding: 4rem 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: grey;
+  background-color: var(--color-mainDark);
   /* box-shadow: 0rem 0.5rem S */
 `;
