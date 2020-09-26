@@ -34,14 +34,14 @@ const Login = () => {
               placeholder="メールアドレス"
               component={Input}
             />
-            <ErrorMessage name="email" />
+            {/* <ErrorMessage name="email" /> */}
             <Field
               type="password"
               name="password"
               placeholder="パスワード"
               component={Input}
             />
-            <ErrorMessage name="password" />
+            {/* <ErrorMessage name="password" /> */}
             <Button type="submit">送信</Button>
           </Form>
         </FormWrapper>
