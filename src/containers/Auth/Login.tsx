@@ -26,7 +26,7 @@ const Login = () => {
     >
       {({ isSubmitting, isValid }) => (
         <FormWrapper>
-          <Heading size="h1" margin="3rem">
+          <Heading size="h1" margin="3rem" fontWeight={700}>
             ログイン
           </Heading>
           <Form>
