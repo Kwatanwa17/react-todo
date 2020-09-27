@@ -31,7 +31,7 @@ const Error = styled.div<{ show: boolean }>`
   position: absolute;
   left: 0;
   bottom: 0;
-  transform: translateY(${({ show }) => (show ? '20px' : '10px')});
+  transform: translateY(${({ show }) => (show ? '1px' : '-20px')});
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   opacity: ${({ show }) => (show ? '1' : '0')};
   transition: all 0.1s;
