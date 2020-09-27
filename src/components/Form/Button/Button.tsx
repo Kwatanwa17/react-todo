@@ -20,10 +20,19 @@ const StyledButton = styled.button`
   &:active {
     transform: translateY(2px);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: black;
+  }
 `;
 
-const Button = ({ children, ...rest }) => {
-  return <StyledButton {...rest}>{children}</StyledButton>;
+const Button = ({ children, disabled, ...rest }) => {
+  return (
+    <StyledButton disabled={disabled} {...rest}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;

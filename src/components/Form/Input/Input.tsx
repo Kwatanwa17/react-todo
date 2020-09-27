@@ -15,10 +15,11 @@ const StyledInput = styled.input`
   background-color: var(--color-mainLight);
   color: var(--color-white);
   border: none;
+  margin-bottom: 2.5rem;
 
-  /* &:not(:last-of-type) {
-    margin-bottom: 2.5rem;
-  } */
+  &:not(:last-of-type) {
+    margin-bottom: 4.5rem;
+  }
 
   &::placeholder {
     color: var(--color-white);

@@ -18,7 +18,8 @@
     "noEmit": true,
     "jsx": "react",
     "noImplicitAny": false,
-    "strict": false
+    "strict": false,
+    "skipLibCheck": true
   },
   "include": [
     "src"

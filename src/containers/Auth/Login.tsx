@@ -3,7 +3,7 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import { Button, Input } from '../../components';
-import { Form, FormWrapper } from '../../elements';
+import { Form, FormWrapper, Heading } from '../../elements';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -26,7 +26,9 @@ const Login = () => {
     >
       {({ isSubmitting, isValid }) => (
         <FormWrapper>
-          <h1>ログイン</h1>
+          <Heading size="h1" margin="3rem">
+            ログイン
+          </Heading>
           <Form>
             <Field
               type="email"
@@ -42,7 +44,9 @@ const Login = () => {
               component={Input}
             />
             {/* <ErrorMessage name="password" /> */}
-            <Button type="submit">送信</Button>
+            <Button type="submit" disabled={!isValid}>
+              送信
+            </Button>
           </Form>
         </FormWrapper>
       )}

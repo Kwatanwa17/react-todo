@@ -5,7 +5,7 @@ export default {
     main: '#003459',
     mainDark: '#21283e',
     mainLight: '#2c3247',
-    mainLighter: 'beige',
+    mainLighter: '#2D9AF0',
     text: '#333',
     white: '#fff',
     error: '#ff5757',
