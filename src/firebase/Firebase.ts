@@ -4,7 +4,7 @@ import 'firebase/auth';
 require('dotenv').config();
 
 // TODO: add env variables
-const config = {
+export const config = {
   // apiKey: process.env.REACT_API_KEY,
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: 'todos-8fa8e.firebaseapp.com',

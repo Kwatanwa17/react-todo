@@ -1,21 +1,26 @@
 import React from 'react';
-import { Formik, Field, ErrorMessage } from 'formik';
+import { connect } from 'react-redux';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
 import { Button, Input } from '../../../components';
 import { Form, FormWrapper, Heading } from '../../../elements';
 
+import * as actions from '../../../store/actions';
+
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .email('無効なメールアドレスです')
     .required('必須項目です'),
-  password: Yup.string().required('必須項目です'),
+  password: Yup.string()
+    .required('必須項目です')
+    .min(8, 'パスワードが短すぎます'),
   confirmedPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], '同じパスワードを入力してください')
     .required('必須項目です'),
 });
 
-const SignUp = () => {
+const SignUp = ({ signUp }) => {
   return (
     <Formik
       initialValues={{
@@ -26,6 +31,8 @@ const SignUp = () => {
       validationSchema={LoginSchema}
       onSubmit={(values, { setSubmitting }) => {
         console.log(values);
+        signUp(values);
+        setSubmitting(false);
       }}
     >
       {({ isSubmitting, isValid }) => (
@@ -65,4 +72,10 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+  signUp: actions.signUp,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -33,6 +33,9 @@ const NavItems: React.FC<ClickedProps> = ({ clicked }) => {
         <NavItem clicked={clicked} link="/login">
           Login
         </NavItem>
+        <NavItem clicked={clicked} link="/signup">
+          SignUp
+        </NavItem>
       </Ul>
     </Nav>
   );
