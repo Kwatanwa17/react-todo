@@ -3,11 +3,12 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import { isLoaded } from 'react-redux-firebase';
 import { Layout } from './layout';
-import { Home, Login, SignUp, Todos } from './containers';
+import { Home, Login, Logout, SignUp, Todos } from './containers';
+import { Loader } from './elements';
 
 function AuthIsLoaded({ children }) {
   const auth = useSelector(state => state.firebase.auth);
-  if (!isLoaded(auth)) return <div>ロードしています</div>;
+  if (!isLoaded(auth)) return <Loader />;
   return children;
 }
 
@@ -20,6 +21,7 @@ const App = ({ loggedIn }) => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/todos" component={Todos} />
+        <Route exact path="/logout" component={Logout} />
         <Redirect to="/" />
       </Switch>
     );
