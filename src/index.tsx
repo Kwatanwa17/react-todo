@@ -16,6 +16,7 @@ import GlobalStyles from './themes/GlobalStyles';
 const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true, // Firestore for Profile instead of Realtime DB
+  attachAuthIsReady: true,
   // enableClaims: true // Get custom claims along with the profile
 };
 
@@ -25,6 +26,8 @@ const rrfProps = {
   dispatch: store.dispatch,
   createFirestoreInstance, // <- needed if using firestore
 };
+
+const root = document.getElementById('root');
 
 ReactDOM.render(
   <Provider store={store}>
@@ -37,5 +40,5 @@ ReactDOM.render(
       </BrowserRouter>
     </ReactReduxFirebaseProvider>
   </Provider>,
-  document.getElementById('root')
+  root
 );

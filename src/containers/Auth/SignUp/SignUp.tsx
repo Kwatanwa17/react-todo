@@ -20,7 +20,7 @@ const LoginSchema = Yup.object().shape({
     .required('必須項目です'),
 });
 
-const SignUp = ({ signUp }) => {
+const SignUp = ({ signUp, loading, error }) => {
   return (
     <Formik
       initialValues={{
@@ -29,50 +29,58 @@ const SignUp = ({ signUp }) => {
         confirmedPassword: '',
       }}
       validationSchema={LoginSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
-        signUp(values);
+      onSubmit={async (values, { setSubmitting }) => {
+        await signUp(values);
         setSubmitting(false);
       }}
     >
-      {({ isSubmitting, isValid }) => (
-        <FormWrapper>
-          <Heading size="h1" margin="1rem" fontWeight={700}>
-            アカウントの新規登録
-          </Heading>
-          <Heading size="h4" margin="3rem">
-            必要な情報を入力してください。
-          </Heading>
-          <Form>
-            <Field
-              type="email"
-              name="email"
-              placeholder="メールアドレス"
-              component={Input}
-            />
-            <Field
-              type="password"
-              name="password"
-              placeholder="パスワード"
-              component={Input}
-            />
-            <Field
-              type="password"
-              name="confirmedPassword"
-              placeholder="パスワードの確認"
-              component={Input}
-            />
-            <Button type="submit" disabled={!isValid}>
-              登録する
-            </Button>
-          </Form>
-        </FormWrapper>
-      )}
+      {({ isSubmitting, isValid }) => {
+        return (
+          <FormWrapper>
+            <Heading size="h1" margin="1rem" fontWeight={700}>
+              アカウントの新規登録
+            </Heading>
+            <Heading size="h4" margin="3rem">
+              必要な情報を入力してください。
+            </Heading>
+            <Form>
+              <Field
+                type="email"
+                name="email"
+                placeholder="メールアドレス"
+                component={Input}
+              />
+              <Field
+                type="password"
+                name="password"
+                placeholder="パスワード"
+                component={Input}
+              />
+              <Field
+                type="password"
+                name="confirmedPassword"
+                placeholder="パスワードの確認"
+                component={Input}
+              />
+              <Button
+                type="submit"
+                disabled={!isValid || isSubmitting}
+                loading={loading ? 'お待ちください' : null}
+              >
+                登録する
+              </Button>
+            </Form>
+          </FormWrapper>
+        );
+      }}
     </Formik>
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({ auth }) => ({
+  loading: auth.loading,
+  error: auth.error,
+});
 
 const mapDispatchToProps = {
   signUp: actions.signUp,

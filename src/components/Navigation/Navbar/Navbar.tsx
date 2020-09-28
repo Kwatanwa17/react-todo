@@ -1,10 +1,10 @@
-import React from "react"
-import styled from "styled-components"
-import { Logo } from "../../../components"
-import { Container } from "../../../elements"
-import NavItems from "../NavItems/NavItems"
+import React from 'react';
+import styled from 'styled-components';
+import { Logo } from '../../../components';
+import { Container } from '../../../elements';
+import NavItems from '../NavItems/NavItems';
 
-import { Device } from "../../../utils"
+import { Device } from '../../../utils';
 
 const FixedWrapper = styled.div`
   position: fixed;
@@ -19,22 +19,22 @@ const FixedWrapper = styled.div`
   @media ${Device.smallOnly} {
     display: none;
   }
-`
+`;
 
 const FlexWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   height: 100%;
-`
-export default () => {
+`;
+export default ({ loggedIn }) => {
   return (
     <FixedWrapper>
       <Container>
         <FlexWrapper>
           <Logo />
-          <NavItems />
+          <NavItems loggedIn={loggedIn} />
         </FlexWrapper>
       </Container>
     </FixedWrapper>
-  )
-}
+  );
+};
