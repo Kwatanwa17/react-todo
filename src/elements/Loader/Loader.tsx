@@ -11,9 +11,14 @@ const Wrapper = styled.div`
 
 const LoadingRing = styled.div`
   display: inline-block;
-  position: relative;
+  /* position: relative; */
   width: 80px;
   height: 80px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 
   div {
     box-sizing: border-box;

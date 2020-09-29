@@ -4,6 +4,7 @@ import styled from 'styled-components';
 type Props = {
   error?: any;
   success?: any;
+  show?: any;
 };
 
 const P = styled.p<Props>`
@@ -16,7 +17,7 @@ const P = styled.p<Props>`
   }};
 `;
 
-const Message = ({ children, error, success }) => {
+const Message: React.FC<Props> = ({ children, error, success, show }) => {
   return (
     <P error={error} success={success}>
       {children}

@@ -19,6 +19,9 @@ export default (state = initialState, action) => {
     case actions.AUTH_SUCCESS:
       return { ...state, error: false };
 
+    case actions.CLEAN_UP:
+      return { ...state, error: null, loading: false };
+
     default:
       return state;
   }

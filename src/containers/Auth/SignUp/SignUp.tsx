@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
 import { Button, Input } from '../../../components';
-import { Form, FormWrapper, Heading } from '../../../elements';
+import {
+  Form,
+  FormWrapper,
+  Heading,
+  Message,
+  MessageWrapper,
+} from '../../../elements';
 
 import * as actions from '../../../store/actions';
 
@@ -20,7 +26,13 @@ const LoginSchema = Yup.object().shape({
     .required('必須項目です'),
 });
 
-const SignUp = ({ signUp, loading, error }) => {
+const SignUp = ({ cleanUp, signUp, loading, error }) => {
+  useEffect(() => {
+    return () => {
+      // clean up messages
+      cleanUp();
+    };
+  }, [cleanUp]);
   return (
     <Formik
       initialValues={{
@@ -69,6 +81,11 @@ const SignUp = ({ signUp, loading, error }) => {
               >
                 登録する
               </Button>
+              <MessageWrapper>
+                <Message error show={error}>
+                  {error}
+                </Message>
+              </MessageWrapper>
             </Form>
           </FormWrapper>
         );
@@ -83,6 +100,7 @@ const mapStateToProps = state => ({ auth }) => ({
 });
 
 const mapDispatchToProps = {
+  cleanUp: actions.cleanUp,
   signUp: actions.signUp,
 };
 
