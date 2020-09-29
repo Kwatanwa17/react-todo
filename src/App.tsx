@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import { isLoaded } from 'react-redux-firebase';
 import { Layout } from './layout';
-import { Home, Login, Logout, SignUp, Todos } from './containers';
+import { Home, Login, Logout, SignUp, Todos, VerifyEmail } from './containers';
 import { Loader } from './elements';
 
 function AuthIsLoaded({ children }) {
@@ -12,11 +12,21 @@ function AuthIsLoaded({ children }) {
   return children;
 }
 
-const App = ({ loggedIn }) => {
+const App = ({ emailVerified, loggedIn }) => {
   console.log(loggedIn);
 
   let routes;
-  if (loggedIn) {
+
+  if (loggedIn && !emailVerified) {
+    // already logged in but email is not verified
+    routes = (
+      <Switch>
+        <Route exact path="/verify-email" component={VerifyEmail} />
+        <Route exact path="/logout" component={Logout} />
+        <Redirect to="/verify-email" />
+      </Switch>
+    );
+  } else if (loggedIn && emailVerified) {
     routes = (
       <Switch>
         <Route exact path="/" component={Home} />
@@ -44,7 +54,8 @@ const App = ({ loggedIn }) => {
 };
 
 const mapStateToProps = ({ firebase }) => ({
-  loggedIn: firebase.auth.uid ? true : false,
+  loggedIn: firebase.auth.uid,
+  emailVerified: firebase.auth.emailVerified,
 });
 
 const mapDispatchToProps = {};

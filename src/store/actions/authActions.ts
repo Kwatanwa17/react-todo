@@ -13,6 +13,11 @@ export const signUp = data => async (
     const res = await firebase
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password);
+
+    // send a verification email
+    const user = firebase.auth().currentUser;
+    await user.sendEmailVerification();
+
     console.log(res);
     await firestore.collection('users').doc(res.user.uid).set({
       email: data.email,

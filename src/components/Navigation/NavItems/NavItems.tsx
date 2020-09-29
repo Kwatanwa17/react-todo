@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import NavItem from './NavItem/NavItem';
 import { Device } from '../../../utils';
@@ -7,6 +7,7 @@ import { Device } from '../../../utils';
 type Props = {
   clicked?: (value: React.SetStateAction<boolean>) => void;
   loggedIn: any;
+  emailVerified: any;
 };
 
 const Nav = styled.nav`
@@ -22,9 +23,21 @@ const Ul = styled.ul`
     flex-direction: column;
   }
 `;
-const NavItems: React.FC<Props> = ({ clicked, loggedIn }) => {
+const NavItems: React.FC<Props> = ({ clicked, emailVerified, loggedIn }) => {
+  // TODO: male use of useSelector
+  // const loggedIn = firebase.auth.uid
+
   let links;
-  if (loggedIn.uid) {
+  // if (loggedIn && !emailVerified) {
+  //   links = (
+  //     <Ul>
+  //       <NavItem clicked={clicked} link="/logout">
+  //         Logout
+  //       </NavItem>
+  //     </Ul>
+  //   );
+  // }
+  if (loggedIn && emailVerified) {
     links = (
       <Ul>
         <NavItem clicked={clicked} link="/">
@@ -56,4 +69,10 @@ const NavItems: React.FC<Props> = ({ clicked, loggedIn }) => {
   return <Nav>{links}</Nav>;
 };
 
-export default NavItems;
+const mapStateToProps = ({ firebase }) => ({
+  emailVerified: firebase.auth.emailVerified,
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, null)(NavItems);
