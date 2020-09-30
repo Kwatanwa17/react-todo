@@ -12,3 +12,4 @@ export const VERIFY_START = 'VERIFY_START';
 export const VERIFY_FAIL = 'VERIFY_FAIL';
 export const VERIFY_END = 'VERIFY_END';
 export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
+export const VERIFY_CLEANUP = 'VERIFY_CLEANUP';

@@ -6,6 +6,7 @@ type Props = {
   rest?: any;
   loading?: any;
   type?: any;
+  onClick?: any;
 };
 
 const StyledButton = styled.button`

@@ -74,3 +74,7 @@ export const verifyEmail = () => async (
     dispatch({ type: actions.VERIFY_FAIL, payload: err.message });
   }
 };
+
+export const verifyCleanUp = () => ({
+  type: actions.VERIFY_CLEANUP,
+});

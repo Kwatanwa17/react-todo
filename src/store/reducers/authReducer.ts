@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   verifyEmail: {
     error: null,
+    success: false,
     loading: false,
   },
 };
@@ -32,7 +33,12 @@ export default (state = initialState, action) => {
     case actions.VERIFY_SUCCESS:
       return {
         ...state,
-        verifyEmail: { ...state.verifyEmail, loading: false, error: false },
+        verifyEmail: {
+          ...state.verifyEmail,
+          loading: false,
+          error: false,
+          success: true,
+        },
       };
 
     case actions.VERIFY_FAIL:
@@ -42,6 +48,17 @@ export default (state = initialState, action) => {
           ...state.verifyEmail,
           loading: false,
           error: action.payload,
+        },
+      };
+
+    case actions.VERIFY_CLEANUP:
+      return {
+        ...state,
+        verifyEmail: {
+          ...state.verifyEmail,
+          error: null,
+          success: false,
+          loading: false,
         },
       };
 
