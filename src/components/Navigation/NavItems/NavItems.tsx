@@ -26,18 +26,18 @@ const Ul = styled.ul`
 const NavItems: React.FC<Props> = ({ clicked, emailVerified, loggedIn }) => {
   // TODO: male use of useSelector
   // const loggedIn = firebase.auth.uid
+  console.log(loggedIn);
 
   let links;
-  // if (loggedIn && !emailVerified) {
-  //   links = (
-  //     <Ul>
-  //       <NavItem clicked={clicked} link="/logout">
-  //         Logout
-  //       </NavItem>
-  //     </Ul>
-  //   );
-  // }
-  if (loggedIn && emailVerified) {
+  if (loggedIn.uid && !emailVerified) {
+    links = (
+      <Ul>
+        <NavItem clicked={clicked} link="/logout">
+          Logout
+        </NavItem>
+      </Ul>
+    );
+  } else if (loggedIn.uid) {
     links = (
       <Ul>
         <NavItem clicked={clicked} link="/">

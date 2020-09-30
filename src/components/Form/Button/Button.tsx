@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+type Props = {
+  disabled?: any;
+  rest?: any;
+  loading?: any;
+  type?: any;
+};
+
 const StyledButton = styled.button`
   width: 100%;
   outline: none;
@@ -27,7 +34,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ children, disabled, ...rest }) => {
+const Button: React.FC<Props> = ({ children, disabled, ...rest }) => {
   return (
     <StyledButton disabled={disabled} {...rest}>
       {children}

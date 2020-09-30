@@ -24,9 +24,9 @@ const LoginSchema = Yup.object().shape({
 
 const Login = ({ cleanUp, login, loading, error }) => {
   useEffect(() => {
-    return () => {
+    return async () => {
       // clean up messages
-      cleanUp();
+      await cleanUp();
     };
   }, [cleanUp]);
   return (
