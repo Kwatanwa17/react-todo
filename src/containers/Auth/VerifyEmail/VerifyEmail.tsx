@@ -25,6 +25,7 @@ const VerifyEmail = ({
         メールボックスを確認してリンクをクリックするか、再送信をしてアカウントを認証してください
       </Heading>
       <Button
+        disabled={error || success || loading}
         loading={loading ? 'メールを送信しています' : null}
         onClick={() => verifyCleanUp() && verifyEmail()}
       >
