@@ -3,7 +3,15 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import { isLoaded } from 'react-redux-firebase';
 import { Layout } from './layout';
-import { Home, Login, Logout, SignUp, Todos, VerifyEmail } from './containers';
+import {
+  Home,
+  Login,
+  Logout,
+  SignUp,
+  Todos,
+  VerifyEmail,
+  RecoveryPassword,
+} from './containers';
 import { Loader } from './elements';
 
 function AuthIsLoaded({ children }) {
@@ -41,6 +49,7 @@ const App = ({ emailVerified, loggedIn }) => {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/recovery-password" component={RecoveryPassword} />
         <Redirect to="/" />
       </Switch>
     );

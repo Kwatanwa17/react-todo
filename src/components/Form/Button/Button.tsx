@@ -22,11 +22,15 @@ const StyledButton = styled.button`
   transition: all 0.2s;
 
   &:hover {
-    transform: translateY(-3px);
+    &:not([disabled]) {
+      transform: translateY(-3px);
+    }
   }
 
   &:active {
-    transform: translateY(2px);
+    &:not([disabled]) {
+      transform: translateY(2px);
+    }
   }
 
   &:disabled {

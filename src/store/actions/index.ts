@@ -5,4 +5,5 @@ export {
   signOut,
   verifyEmail,
   verifyCleanUp,
+  recoverPassword,
 } from './authActions';

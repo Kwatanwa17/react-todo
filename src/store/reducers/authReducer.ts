@@ -8,10 +8,34 @@ const initialState = {
     success: false,
     loading: false,
   },
+  recoverPassword: {
+    error: null,
+    success: false,
+    loading: false,
+  },
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case actions.CLEAN_UP:
+      return {
+        ...state,
+        error: null,
+        loading: false,
+        verifyEmail: {
+          ...state.verifyEmail,
+          error: null,
+          success: false,
+          loading: false,
+        },
+        recoverPassword: {
+          ...state.recoverPassword,
+          error: null,
+          success: false,
+          loading: false,
+        },
+      };
+
     case actions.AUTH_START:
       return { ...state, loading: true };
 
@@ -23,9 +47,6 @@ export default (state = initialState, action) => {
 
     case actions.AUTH_SUCCESS:
       return { ...state, error: false };
-
-    case actions.CLEAN_UP:
-      return { ...state, error: null, loading: false };
 
     case actions.VERIFY_START:
       return { ...state, verifyEmail: { ...state.verifyEmail, loading: true } };
@@ -59,6 +80,33 @@ export default (state = initialState, action) => {
           error: null,
           success: false,
           loading: false,
+        },
+      };
+
+    case actions.RECOVER_START:
+      return {
+        ...state,
+        recoverPassword: { ...state.verifyEmail, loading: true },
+      };
+
+    case actions.RECOVER_SUCCESS:
+      return {
+        ...state,
+        recoverPassword: {
+          ...state.recoverPassword,
+          loading: false,
+          error: false,
+          success: true,
+        },
+      };
+
+    case actions.RECOVER_FAIL:
+      return {
+        ...state,
+        recoverPassword: {
+          ...state.recoverPassword,
+          loading: false,
+          error: action.payload,
         },
       };
 

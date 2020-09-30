@@ -13,3 +13,10 @@ export const VERIFY_FAIL = 'VERIFY_FAIL';
 export const VERIFY_END = 'VERIFY_END';
 export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 export const VERIFY_CLEANUP = 'VERIFY_CLEANUP';
+
+// recover password action types
+export const RECOVER_START = 'RECOVER_START';
+export const RECOVER_FAIL = 'RECOVER_FAIL';
+export const RECOVER_END = 'RECOVER_END';
+export const RECOVER_SUCCESS = 'RECOVER_SUCCESS';
+export const RECOVER_CLEANUP = 'RECOVER_CLEANUP';

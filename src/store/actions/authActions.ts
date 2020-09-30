@@ -78,3 +78,19 @@ export const verifyEmail = () => async (
 export const verifyCleanUp = () => ({
   type: actions.VERIFY_CLEANUP,
 });
+
+// recover password action creator
+export const recoverPassword = data => async (
+  dispatch,
+  getState,
+  { getFirebase }
+) => {
+  const firebase = getFirebase();
+  dispatch({ type: actions.RECOVER_START });
+  try {
+    await firebase.auth().sendPasswordResetEmail(data.email);
+    dispatch({ type: actions.RECOVER_SUCCESS });
+  } catch (err) {
+    dispatch({ type: actions.RECOVER_FAIL, payload: err.message });
+  }
+};
