@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '../../../components';
 import {
@@ -16,6 +16,12 @@ const VerifyEmail = ({
   verifyEmail,
   verifyCleanUp,
 }) => {
+  useEffect(() => {
+    return async () => {
+      // clean up messages
+      await verifyCleanUp();
+    };
+  }, [verifyCleanUp]);
   return (
     <FormWrapper>
       <Heading size="h1" margin="2rem">
