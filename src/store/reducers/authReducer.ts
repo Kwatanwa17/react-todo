@@ -13,6 +13,11 @@ const initialState = {
     success: false,
     loading: false,
   },
+  profileEdit: {
+    error: null,
+    success: false,
+    loading: false,
+  },
 };
 
 export default (state = initialState, action) => {
@@ -86,7 +91,7 @@ export default (state = initialState, action) => {
     case actions.RECOVER_START:
       return {
         ...state,
-        recoverPassword: { ...state.verifyEmail, loading: true },
+        recoverPassword: { ...state.recoverPassword, loading: true },
       };
 
     case actions.RECOVER_SUCCESS:
@@ -105,6 +110,33 @@ export default (state = initialState, action) => {
         ...state,
         recoverPassword: {
           ...state.recoverPassword,
+          loading: false,
+          error: action.payload,
+        },
+      };
+
+    case actions.PROFILE_EDIT_START:
+      return {
+        ...state,
+        profileEdit: { ...state.profileEdit, loading: true },
+      };
+
+    case actions.PROFILE_EDIT_SUCCESS:
+      return {
+        ...state,
+        profileEdit: {
+          ...state.profileEdit,
+          loading: false,
+          error: false,
+          success: true,
+        },
+      };
+
+    case actions.PROFILE_EDIT_FAIL:
+      return {
+        ...state,
+        profileEdit: {
+          ...state.profileEdit,
           loading: false,
           error: action.payload,
         },

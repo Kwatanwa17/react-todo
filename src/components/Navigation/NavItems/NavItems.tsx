@@ -46,6 +46,9 @@ const NavItems: React.FC<Props> = ({ clicked, emailVerified, loggedIn }) => {
         <NavItem clicked={clicked} link="/todos">
           Todos
         </NavItem>
+        <NavItem clicked={clicked} link="/profile">
+          Profile
+        </NavItem>
         <NavItem clicked={clicked} link="/logout">
           Logout
         </NavItem>

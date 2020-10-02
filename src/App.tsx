@@ -10,6 +10,7 @@ import {
   SignUp,
   Todos,
   VerifyEmail,
+  Profile,
   RecoveryPassword,
 } from './containers';
 import { Loader } from './elements';
@@ -39,6 +40,7 @@ const App = ({ emailVerified, loggedIn }) => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/todos" component={Todos} />
+        <Route exact path="/profile" component={Profile} />
         <Route exact path="/logout" component={Logout} />
         <Redirect to="/" />
       </Switch>
