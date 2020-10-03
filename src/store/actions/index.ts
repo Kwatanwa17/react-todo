@@ -1,5 +1,6 @@
 export {
   cleanUp,
+  deleteUser,
   signIn,
   signUp,
   signOut,

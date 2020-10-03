@@ -1,18 +1,12 @@
 import * as actions from './authTypes';
 
 // SignIn action creator
-export const signUp = data => async (
-  dispatch,
-  getState,
-  { getFirebase, getFirestore }
-) => {
+export const signUp = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
   const firebase = getFirebase();
   const firestore = getFirestore();
   dispatch({ type: actions.AUTH_START });
   try {
-    const res = await firebase
-      .auth()
-      .createUserWithEmailAndPassword(data.email, data.password);
+    const res = await firebase.auth().createUserWithEmailAndPassword(data.email, data.password);
 
     // send a verification email
     const user = firebase.auth().currentUser;
@@ -59,11 +53,7 @@ export const cleanUp = () => ({
 });
 
 // verify email action creator
-export const verifyEmail = () => async (
-  dispatch,
-  getState,
-  { getFirebase }
-) => {
+export const verifyEmail = () => async (dispatch, getState, { getFirebase }) => {
   const firebase = getFirebase();
   dispatch({ type: actions.VERIFY_START });
   try {
@@ -80,11 +70,7 @@ export const verifyCleanUp = () => ({
 });
 
 // recover password action creator
-export const recoverPassword = data => async (
-  dispatch,
-  getState,
-  { getFirebase }
-) => {
+export const recoverPassword = data => async (dispatch, getState, { getFirebase }) => {
   const firebase = getFirebase();
   dispatch({ type: actions.RECOVER_START });
   try {
@@ -96,11 +82,7 @@ export const recoverPassword = data => async (
 };
 
 // edit profile action creator
-export const editProfile = data => async (
-  dispatch,
-  getState,
-  { getFirebase, getFirestore }
-) => {
+export const editProfile = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
   const firebase = getFirebase();
   const firestore = getFirestore();
   const user = firebase.auth().currentUser;
@@ -116,5 +98,21 @@ export const editProfile = data => async (
     dispatch({ type: actions.PROFILE_EDIT_SUCCESS });
   } catch (err) {
     dispatch({ type: actions.PROFILE_EDIT_FAIL, payload: err.message });
+  }
+};
+
+// delete user action creator
+export const deleteUser = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
+  const firebase = getFirebase();
+  const firestore = getFirestore();
+  const user = firebase.auth().currentUser;
+  const userId = getState().firebase.auth.uid;
+  dispatch({ type: actions.DELETE_USER_START });
+  try {
+    await firestore.collection('users').doc(userId).delete();
+    await user.delete();
+    dispatch({ type: actions.DELETE_USER_SUCCESS });
+  } catch (err) {
+    dispatch({ type: actions.DELETE_USER_FAIL, payload: err.message });
   }
 };

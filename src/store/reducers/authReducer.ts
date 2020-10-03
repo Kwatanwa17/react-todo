@@ -18,6 +18,11 @@ const initialState = {
     success: false,
     loading: false,
   },
+  deleteUser: {
+    error: null,
+    success: false,
+    loading: false,
+  },
 };
 
 export default (state = initialState, action) => {
@@ -35,6 +40,12 @@ export default (state = initialState, action) => {
         },
         recoverPassword: {
           ...state.recoverPassword,
+          error: null,
+          success: false,
+          loading: false,
+        },
+        deleteUser: {
+          ...state.verifyEmail,
           error: null,
           success: false,
           loading: false,
@@ -140,6 +151,24 @@ export default (state = initialState, action) => {
           loading: false,
           error: action.payload,
         },
+      };
+
+    case actions.DELETE_USER_START:
+      return {
+        ...state,
+        deleteUser: { ...state.deleteUser, loading: true },
+      };
+
+    case actions.DELETE_USER_FAIL:
+      return {
+        ...state,
+        deleteUser: { ...state.deleteUser, loading: false, error: action.payload },
+      };
+
+    case actions.DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        deleteUser: { ...state.deleteUser, loading: false, success: true },
       };
 
     default:
