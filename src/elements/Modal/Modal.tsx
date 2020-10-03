@@ -5,6 +5,7 @@ import Backdrop from './Backdrop/Backdrop';
 
 type Props = {
   opened?: boolean;
+  closed?: any;
   clicked?: boolean;
 };
 
@@ -12,8 +13,11 @@ const ModalWrapper = styled.div<Props>`
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 50%);
+  transform: translate(-50%, -50%);
+  transform: ${({ opened }) =>
+    opened ? 'translate(-50%, -50%)' : 'translate(-50%, -80%)'};
   display: flex;
+  flex-direction: column;
   align-items: center;
   z-index: 150;
   justify-content: center;
@@ -26,13 +30,13 @@ const ModalWrapper = styled.div<Props>`
   border-radius: 1rem;
   background-color: var(--color-mainLighter);
   color: var(--color-white);
-  transition: all 0.1s;
+  transition: all 0.3s;
 `;
 
-const Modal: React.FC<Props> = ({ opened, children }) => {
+const Modal: React.FC<Props> = ({ opened, closed, children }) => {
   return ReactDOM.createPortal(
     <>
-      <Backdrop opened={opened} />
+      <Backdrop opened={opened} closed={closed} />
       <ModalWrapper opened={opened}>{children}</ModalWrapper>
     </>,
     document.getElementById('modal')

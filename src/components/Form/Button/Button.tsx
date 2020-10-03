@@ -7,17 +7,21 @@ type Props = {
   loading?: any;
   type?: any;
   onClick?: any;
+  contain?: boolean;
+  color?: string;
 };
 
-const StyledButton = styled.button`
-  width: 100%;
+const StyledButton = styled.button<Props>`
+  width: ${({ contain }) => (contain ? 'auto' : '100%')};
   outline: none;
   padding: 1.2rem 2rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   font-size: 1.2rem;
   color: var(--color-white);
   font-weight: 500;
-  background-color: var(--color-mainLighter);
+  box-shadow: 0rem 0.5rem 3.5rem var(--color-shadow);
+  background-color: ${({ color }) =>
+    color ? color : 'var(--color-mainLighter)'};
   border: none;
   transition: all 0.2s;
 
@@ -39,10 +43,17 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button: React.FC<Props> = ({ children, disabled, ...rest }) => {
+const Button: React.FC<Props> = ({
+  children,
+  disabled,
+  contain,
+  loading,
+  color,
+  ...rest
+}) => {
   return (
-    <StyledButton disabled={disabled} {...rest}>
-      {children}
+    <StyledButton color={color} disabled={disabled} contain={contain} {...rest}>
+      {loading ? loading : children}
     </StyledButton>
   );
 };

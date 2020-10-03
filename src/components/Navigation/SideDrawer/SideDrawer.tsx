@@ -51,6 +51,7 @@ const Menu = styled.div<{ opened: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 300;
 
   @media ${Device.smallOnly} {
     display: flex;

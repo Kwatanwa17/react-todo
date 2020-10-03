@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 type Props = {
   opened?: boolean;
+  closed?: any;
   clicked?: boolean;
 };
 
@@ -16,11 +17,11 @@ const BackdropWrapper = styled.div<Props>`
   background-color: rgba(0, 0, 0, 0.7);
   opacity: ${({ opened }) => (opened ? '1' : '0')};
   visibility: ${({ opened }) => (opened ? 'visible' : 'hidden')};
-  transition: all 0.1s;
+  transition: all 0.3s;
 `;
 
-const Backdrop: React.FC<Props> = ({ opened, clicked }) => {
-  return <BackdropWrapper opened={opened} clicked={clicked} />;
+const Backdrop: React.FC<Props> = ({ opened, clicked, closed }) => {
+  return <BackdropWrapper opened={opened} onClick={closed} clicked={clicked} />;
 };
 
 export default Backdrop;

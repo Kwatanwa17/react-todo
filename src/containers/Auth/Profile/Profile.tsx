@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import {
+  ButtonWrapper,
+  DeleteWrapper,
   Form,
   FormWrapper,
   Heading,
@@ -40,6 +42,9 @@ const Profile = ({
       await cleanUp();
     };
   }, [cleanUp]);
+
+  const [modalOpened, setModalOpened] = useState(false);
+
   return (
     <>
       <Formik
@@ -96,12 +101,33 @@ const Profile = ({
                     変更されました
                   </Message>
                 </MessageWrapper>
+                <DeleteWrapper onClick={() => setModalOpened(true)}>
+                  アカウントを消去する
+                </DeleteWrapper>
               </Form>
             </FormWrapper>
           );
         }}
       </Formik>
-      <Modal opened>モーダルオープン</Modal>
+      <Modal opened={modalOpened} closed={() => setModalOpened(false)}>
+        <Heading size="h1" margin="1rem" fontWeight={700}>
+          注意
+        </Heading>
+        <p>本当に削除しますか？</p>
+        <p>この操作は取り消せません</p>
+        <ButtonWrapper>
+          <Button color="var(--color-error)" contain>
+            削除
+          </Button>
+          <Button
+            color="var(--color-main)"
+            contain
+            onClick={() => setModalOpened(false)}
+          >
+            キャンセル
+          </Button>
+        </ButtonWrapper>
+      </Modal>
     </>
   );
 };
