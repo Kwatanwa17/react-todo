@@ -3,26 +3,10 @@ import * as actions from '../actions/authTypes';
 const initialState = {
   error: null,
   loading: false,
-  verifyEmail: {
-    error: null,
-    success: false,
-    loading: false,
-  },
-  recoverPassword: {
-    error: null,
-    success: false,
-    loading: false,
-  },
-  profileEdit: {
-    error: null,
-    success: false,
-    loading: false,
-  },
-  deleteUser: {
-    error: null,
-    success: false,
-    loading: false,
-  },
+  verifyEmail: { error: null, success: false, loading: false },
+  recoverPassword: { error: null, success: false, loading: false },
+  profileEdit: { error: null, success: false, loading: false },
+  deleteUser: { error: null, success: false, loading: false },
 };
 
 export default (state = initialState, action) => {
@@ -32,24 +16,9 @@ export default (state = initialState, action) => {
         ...state,
         error: null,
         loading: false,
-        verifyEmail: {
-          ...state.verifyEmail,
-          error: null,
-          success: false,
-          loading: false,
-        },
-        recoverPassword: {
-          ...state.recoverPassword,
-          error: null,
-          success: false,
-          loading: false,
-        },
-        deleteUser: {
-          ...state.verifyEmail,
-          error: null,
-          success: false,
-          loading: false,
-        },
+        verifyEmail: { ...state.verifyEmail, error: null, success: false, loading: false },
+        recoverPassword: { ...state.recoverPassword, error: null, success: false, loading: false },
+        deleteUser: { ...state.verifyEmail, error: null, success: false, loading: false },
       };
 
     case actions.AUTH_START:
@@ -70,33 +39,19 @@ export default (state = initialState, action) => {
     case actions.VERIFY_SUCCESS:
       return {
         ...state,
-        verifyEmail: {
-          ...state.verifyEmail,
-          loading: false,
-          error: false,
-          success: true,
-        },
+        verifyEmail: { ...state.verifyEmail, loading: false, error: false, success: true },
       };
 
     case actions.VERIFY_FAIL:
       return {
         ...state,
-        verifyEmail: {
-          ...state.verifyEmail,
-          loading: false,
-          error: action.payload,
-        },
+        verifyEmail: { ...state.verifyEmail, loading: false, error: action.payload },
       };
 
     case actions.VERIFY_CLEANUP:
       return {
         ...state,
-        verifyEmail: {
-          ...state.verifyEmail,
-          error: null,
-          success: false,
-          loading: false,
-        },
+        verifyEmail: { ...state.verifyEmail, error: null, success: false, loading: false },
       };
 
     case actions.RECOVER_START:
@@ -108,22 +63,13 @@ export default (state = initialState, action) => {
     case actions.RECOVER_SUCCESS:
       return {
         ...state,
-        recoverPassword: {
-          ...state.recoverPassword,
-          loading: false,
-          error: false,
-          success: true,
-        },
+        recoverPassword: { ...state.recoverPassword, loading: false, error: false, success: true },
       };
 
     case actions.RECOVER_FAIL:
       return {
         ...state,
-        recoverPassword: {
-          ...state.recoverPassword,
-          loading: false,
-          error: action.payload,
-        },
+        recoverPassword: { ...state.recoverPassword, loading: false, error: action.payload },
       };
 
     case actions.PROFILE_EDIT_START:
@@ -135,22 +81,13 @@ export default (state = initialState, action) => {
     case actions.PROFILE_EDIT_SUCCESS:
       return {
         ...state,
-        profileEdit: {
-          ...state.profileEdit,
-          loading: false,
-          error: false,
-          success: true,
-        },
+        profileEdit: { ...state.profileEdit, loading: false, error: false, success: true },
       };
 
     case actions.PROFILE_EDIT_FAIL:
       return {
         ...state,
-        profileEdit: {
-          ...state.profileEdit,
-          loading: false,
-          error: action.payload,
-        },
+        profileEdit: { ...state.profileEdit, loading: false, error: action.payload },
       };
 
     case actions.DELETE_USER_START:
