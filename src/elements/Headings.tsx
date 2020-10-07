@@ -54,13 +54,7 @@ type Props = {
   fontWeight?: number;
 };
 
-const Headings: React.FC<Props> = ({
-  children,
-  color,
-  fontWeight,
-  size,
-  margin,
-}) => {
+const Headings: React.FC<Props> = ({ children, color, fontWeight, size, margin }) => {
   switch (size) {
     case 'h1':
       return (

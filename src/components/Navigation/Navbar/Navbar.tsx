@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Logo } from '../../../components';
 import { Container } from '../../../elements';
 import NavItems from '../NavItems/NavItems';
-
 import { Device } from '../../../utils';
 
 const FixedWrapper = styled.div`
@@ -26,6 +25,7 @@ const FlexWrapper = styled.div`
   justify-content: space-between;
   height: 100%;
 `;
+
 export default ({ loggedIn }) => {
   return (
     <FixedWrapper>
