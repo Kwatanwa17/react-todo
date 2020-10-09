@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux'
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '../../../components';
 import { ButtonWrapper, Form, FormWrapper, Heading, Message, MessageWrapper, Modal } from '../../../elements';
 import { Input } from '../../../components';
+import * as actions from '../../../store/actions';
 
 const TodoSchema = Yup.object().shape({
   todo: Yup.string().required('必須項目です'),
 });
 
-const AddTodo = ({}) => {
+const AddTodo = ({addTodo}) => {
   const [isOpened, setIsOpened] = useState(false);
   return (
     <>
@@ -27,7 +29,7 @@ const AddTodo = ({}) => {
           }}
           validationSchema={TodoSchema}
           onSubmit={async (values, { setSubmitting }) => {
-            //   Todo: send todo
+            await addTodo(values);
             setSubmitting(false);
           }}
         >
@@ -70,4 +72,10 @@ const AddTodo = ({}) => {
   );
 };
 
-export default AddTodo;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+addTodo: actions.addTodo
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);

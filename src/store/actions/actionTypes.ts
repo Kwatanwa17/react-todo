@@ -31,3 +31,8 @@ export const DELETE_USER_START = 'DELETE_USER_START';
 export const DELETE_USER_FAIL = 'DELETE_USER_FAIL';
 export const DELETE_USER_END = 'DELETE_USER_END';
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+
+// add todo action types
+export const ADD_TODO_START = 'ADD_TODO_START';
+export const ADD_TODO_FAIL = 'ADD_TODO_FAIL';
+export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS';

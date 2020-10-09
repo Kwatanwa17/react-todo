@@ -1,4 +1,4 @@
-import * as actions from '../actions/authTypes';
+import * as actions from '../actions/actionTypes';
 
 const initialState = {
   error: null,

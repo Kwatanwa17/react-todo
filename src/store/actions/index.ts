@@ -1,3 +1,4 @@
+export { addTodo } from './todosActions';
 export {
   cleanUp,
   deleteUser,

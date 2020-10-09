@@ -1,4 +1,4 @@
-import * as actions from './authTypes';
+import * as actions from './actionTypes';
 
 // SignIn action creator
 export const signUp = data => async (dispatch, getState, { getFirebase, getFirestore }) => {

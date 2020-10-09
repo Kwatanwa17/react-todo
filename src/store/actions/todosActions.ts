@@ -1,0 +1,40 @@
+import { firestore } from 'firebase';
+import * as actions from './actionTypes';
+
+// Add a todo
+export const addTodo = data => async (dispatch, getState, { getFirestore }) => {
+  const firestore = getFirestore();
+  const userId = getState().firebase.auth.uid;
+  dispatch({ type: actions.ADD_TODO_START });
+  try {
+    const res = await firestore
+      .collection('todos')
+      .doc(userId)
+      .get()
+
+    // console.log(res.data().todos)
+    const newTodo = {
+      id: new Date().valueOf(),
+      todo: data.todo,
+      done: false
+    }
+    if (typeof res.data() === "undefined") {
+      firestore
+        .collection('todos')
+        .doc(userId)
+        .set({
+          todos: [newTodo]
+        }) 
+    } else {
+      firestore
+        .collection('todos')
+        .doc(userId)
+        .set({
+          todos: [...res.data().todos, newTodo]
+        })
+    }
+    dispatch({ type: actions.ADD_TODO_SUCCESS });
+  } catch (err) {
+    dispatch({ type: actions.ADD_TODO_FAIL, payload: err.message })
+  }
+};
