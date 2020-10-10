@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, Heading } from '../../elements';
+import  'firebase/database'
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { connect } from 'react-redux'
+import { Container, Heading, Loader } from '../../elements';
 import AddTodos from './AddTodo/AddTodo';
+import Todo from './Todo/Todo'
+import { firestore } from 'firebase';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -18,7 +24,27 @@ const InnerWrapper = styled.div`
   padding: 3rem 5rem;
 `;
 
-const Todos = () => {
+const ContentWrapper = styled.div`
+  width:100%;
+  max-width:60rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 2rem 0;
+`
+
+const Todos = ({ todos, requesting, requested, userId }) => {
+  let content;
+  if (!todos) {
+    content = <Loader color="var(--color-white)"/>;
+  } else if (!todos[userId] && requested[`todos/${userId}`]) {
+    content = <Heading size="h4">TODOがありません</Heading>
+  } else {
+    content = todos[userId].todos.map(
+      todo => <Todo key={todo.id} todo={todo} />
+    );
+  }
+
   return (
     <Wrapper>
       <Container>
@@ -28,10 +54,29 @@ const Todos = () => {
             This is the TODOS.
           </Heading>
           <AddTodos />
+          <ContentWrapper>{content}</ContentWrapper>
         </InnerWrapper>
       </Container>
     </Wrapper>
   );
 };
 
-export default Todos;
+const mapStateToProps = ({firebase, firestore}) => ({
+  userId: firebase.auth.uid,
+  todos: firestore.data.todos,
+  requesting: firestore.status.requesting,
+  requested: firestore.status.requested
+})
+
+const mapDispatchToProps = {
+  
+}
+
+type Props = {
+  userId: any
+}
+
+export default compose<any>(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect((props: Props) => ([`todos/${props.userId}`]))
+)(Todos);

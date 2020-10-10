@@ -11,7 +11,7 @@ const TodoSchema = Yup.object().shape({
   todo: Yup.string().required('必須項目です'),
 });
 
-const AddTodo = ({addTodo}) => {
+const AddTodo = ({ addTodo, loading, error}) => {
   const [isOpened, setIsOpened] = useState(false);
   return (
     <>
@@ -29,7 +29,10 @@ const AddTodo = ({addTodo}) => {
           }}
           validationSchema={TodoSchema}
           onSubmit={async (values, { setSubmitting }) => {
-            await addTodo(values);
+            const res = await addTodo(values);
+            if (res) {
+              setIsOpened(false);
+            }
             setSubmitting(false);
           }}
         >
@@ -38,12 +41,11 @@ const AddTodo = ({addTodo}) => {
               <Form>
                 <Field type="text" name="todo" placeholder="新しいTODO" component={Input} />
                 <ButtonWrapper>
-                  {/* TODO: add properties to Button */}
                   <Button
                     contain
                     type="submit"
                     disabled={!isValid || isSubmitting}
-                    // loading={loadingDelete ? 'お待ちください' : null}
+                    loading={loading? 'お待ちください' : null}
                   >
                     追加
                   </Button>
@@ -52,10 +54,10 @@ const AddTodo = ({addTodo}) => {
                   </Button>
                 </ButtonWrapper>
                 <MessageWrapper>
-                  {/* <Message error show={error}>
+                  <Message error show={error}>
                     {error}
                   </Message>
-                  <Message success show={success === true}>
+                  {/* <Message success show={success === true}>
                     変更されました
                   </Message> */}
                 </MessageWrapper>
@@ -72,10 +74,13 @@ const AddTodo = ({addTodo}) => {
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = ({ todos }) => ({
+  loading: todos.loading,
+  error: todos.error
+});
 
 const mapDispatchToProps = {
-addTodo: actions.addTodo
+  addTodo: actions.addTodo
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);

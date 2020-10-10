@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+type Props = {
+  color?: string
+}  
+
 const Wrapper = styled.div`
   height: 100%;
   width: 100%;
@@ -9,9 +13,8 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const LoadingRing = styled.div`
+const LoadingRing = styled.div<Props>`
   display: inline-block;
-  /* position: relative; */
   width: 80px;
   height: 80px;
   margin: 0;
@@ -27,10 +30,10 @@ const LoadingRing = styled.div`
     width: 64px;
     height: 64px;
     margin: 8px;
-    border: 8px solid var(--color-main);
+    border: 8px solid ${({ color }) => color ? color : "var(--color - main)"};
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: var(--color-main) transparent transparent transparent;
+    border-color: ${({ color }) => color ? color : "var(--color - main)"} transparent transparent transparent;
 
     &:nth-child(1) {
       animation-delay: -0.45s;
@@ -54,16 +57,15 @@ const LoadingRing = styled.div`
     }
   }
 `;
-const Loader = () => {
+const Loader: React.FC<Props> = ({color}) => {
   return (
     <Wrapper>
-      <LoadingRing>
+      <LoadingRing color={color}>
         <div></div>
         <div></div>
         <div></div>
         <div></div>
       </LoadingRing>
-      {/* <p>LOADING...</p> */}
     </Wrapper>
   );
 };
