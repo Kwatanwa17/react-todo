@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '../../../components';
@@ -11,33 +11,31 @@ const TodoSchema = Yup.object().shape({
   todo: Yup.string().required('必須項目です'),
 });
 
-const AddTodo = ({ addTodo, loading, error}) => {
-  const [isOpened, setIsOpened] = useState(false);
+const InputTodo = ({ close, opened, addTodo, isEditTodo, loading, error, todo, editTodo }) => {
   return (
     <>
-      <Button contain onClick={() => setIsOpened(true)}>
-        Add TODOS
-      </Button>
-      <Modal opened={isOpened} closed={() => setIsOpened(false)}>
+      <Modal opened={opened} closed={close}>
         <Heading size="h1" margin="2rem" fontWeight={700}>
-          TODOを追加します
+          {isEditTodo ? 'TODOを編集します' : 'TODOを追加します'}
         </Heading>
-        <p>内容を入力して、ボタンを押してください</p>
+        <Heading size="h4" margin="2rem" fontWeight={400}>
+          内容を入力して、ボタンを押してください
+        </Heading>
         <Formik
           initialValues={{
-            todo: '',
+            todo: isEditTodo ? isEditTodo.todo : '',
           }}
           validationSchema={TodoSchema}
-          onSubmit={async (values, { setSubmitting, resetForm}) => {
-            const res = await addTodo(values);
+          onSubmit={async (values, { setSubmitting, resetForm }) => {
+            const res = isEditTodo ? await editTodo(isEditTodo.id, values) : await addTodo(values);
             setSubmitting(false);
             if (res) {
-              setIsOpened(false);
+              close();
               resetForm();
             }
           }}
         >
-          {({ isSubmitting, isValid, dirty }) => {
+          {({ isSubmitting, isValid, dirty, resetForm }) => {
             return (
               <Form>
                 <Field type="text" name="todo" placeholder="新しいTODO" component={Input} />
@@ -46,11 +44,19 @@ const AddTodo = ({ addTodo, loading, error}) => {
                     contain
                     type="submit"
                     disabled={!isValid || isSubmitting}
-                    loading={loading? 'お待ちください' : null}
+                    loading={loading ? 'お待ちください' : null}
                   >
-                    追加
+                    {isEditTodo ? '編集を保存' : '追加'}
                   </Button>
-                  <Button color="var(--color-main)" contain onClick={() => setIsOpened(false)}>
+                  <Button
+                    type="button"
+                    color="var(--color-main)"
+                    contain
+                    onClick={() => {
+                      close();
+                      resetForm();
+                    }}
+                  >
                     キャンセル
                   </Button>
                 </ButtonWrapper>
@@ -77,11 +83,12 @@ const AddTodo = ({ addTodo, loading, error}) => {
 
 const mapStateToProps = ({ todos }) => ({
   loading: todos.loading,
-  error: todos.error
+  error: todos.error,
 });
 
 const mapDispatchToProps = {
-  addTodo: actions.addTodo
+  addTodo: actions.addTodo,
+  editTodo: actions.editTodo,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);
+export default connect(mapStateToProps, mapDispatchToProps)(InputTodo);

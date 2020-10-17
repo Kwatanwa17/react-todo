@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import DeleteTodo from './DeleteTodo/DeleteTodo';
+import InputTodo from '../../Todos/InputTodo/InputTodo';
 
 const Wrapper = styled.p`
   width: 100%;
@@ -24,25 +25,28 @@ const Controls = styled.div`
   padding: 1rem;
   justify-content: center;
 
-  i {
+  > i {
     margin: 0 0.5rem;
+    cursor: pointer;
   }
 `;
 
 const Todo = ({ todo }) => {
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <Wrapper>
       {todo.todo}
       <Controls>
         <i style={{ color: 'var(--color-main)' }}>
-          <FontAwesomeIcon icon={faEdit} />
+          <FontAwesomeIcon icon={faEdit} onClick={() => setIsEditing(true)} />
         </i>
         <i style={{ color: 'var(--color-error)' }}>
           <FontAwesomeIcon icon={faTrashAlt} onClick={() => setIsDeleting(true)} />
         </i>
         <DeleteTodo todo={todo} show={isDeleting} close={() => setIsDeleting(false)} />
+        <InputTodo isEditTodo={todo} opened={isEditing} close={() => setIsEditing(false)} />
       </Controls>
     </Wrapper>
   );

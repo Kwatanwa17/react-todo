@@ -27,7 +27,7 @@ const DeleteTodo = ({ todo, show, close, deleteTodo, error, loading }) => {
         >
           削除
         </Button>
-        <Button color="var(--color-main)" contain onClick={() => close()}>
+        <Button type="button" color="var(--color-main)" contain onClick={() => close()}>
           キャンセル
         </Button>
       </ButtonWrapper>
