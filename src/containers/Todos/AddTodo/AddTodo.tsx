@@ -28,12 +28,13 @@ const AddTodo = ({ addTodo, loading, error}) => {
             todo: '',
           }}
           validationSchema={TodoSchema}
-          onSubmit={async (values, { setSubmitting }) => {
+          onSubmit={async (values, { setSubmitting, resetForm}) => {
             const res = await addTodo(values);
+            setSubmitting(false);
             if (res) {
               setIsOpened(false);
+              resetForm();
             }
-            setSubmitting(false);
           }}
         >
           {({ isSubmitting, isValid, dirty }) => {

@@ -1,4 +1,4 @@
-export { addTodo } from './todosActions';
+export * from './todosActions';
 export {
   cleanUp,
   deleteUser,
