@@ -40,7 +40,9 @@ const Todos = ({ todos, requesting, requested, userId }) => {
   let content;
   if (!todos) {
     content = <Loader color="var(--color-white)" />;
-  } else if ((!todos[userId] && requested[`todos/${userId}`]) || todos[userId].todos.length === 0) {
+  } else if (!todos[userId] || !todos[userId].todos) {
+    content = <Heading size="h4">TODOがありません</Heading>;
+  } else if (todos[userId].todos.length === 0) {
     content = <Heading size="h4">TODOがありません</Heading>;
   } else {
     content = todos[userId].todos

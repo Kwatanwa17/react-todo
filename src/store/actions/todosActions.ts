@@ -16,7 +16,8 @@ export const addTodo = data => async (dispatch, getState, { getFirestore }) => {
       done: false,
     };
     // if there is no todo
-    if (typeof res.data() === 'undefined') {
+    if (typeof res.data() === 'undefined' || !res.data()) {
+      console.log(res.data());
       firestore
         .collection('todos')
         .doc(userId)

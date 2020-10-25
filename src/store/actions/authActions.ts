@@ -110,6 +110,7 @@ export const deleteUser = data => async (dispatch, getState, { getFirebase, getF
   dispatch({ type: actions.DELETE_USER_START });
   try {
     await firestore.collection('users').doc(userId).delete();
+    await firestore.collection('todos').doc(userId).delete();
     await user.delete();
     dispatch({ type: actions.DELETE_USER_SUCCESS });
   } catch (err) {

@@ -1,3 +1,4 @@
+import { log } from 'console';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
@@ -14,8 +15,7 @@ const ModalWrapper = styled.div<Props>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transform: ${({ opened }) =>
-    opened ? 'translate(-50%, -50%)' : 'translate(-50%, -80%)'};
+  transform: ${({ opened }) => (opened ? 'translate(-50%, -50%)' : 'translate(-50%, -80%)')};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,14 +33,21 @@ const ModalWrapper = styled.div<Props>`
   transition: all 0.3s;
 `;
 
-const Modal: React.FC<Props> = ({ opened, closed, children }) => {
-  return ReactDOM.createPortal(
-    <>
-      <Backdrop opened={opened} closed={closed} />
-      <ModalWrapper opened={opened}>{children}</ModalWrapper>
-    </>,
-    document.getElementById('modal')
-  );
-};
+const Modal: React.FC<Props> = React.memo(
+  ({ opened, closed, children }) => {
+    console.log('Modal rendered');
+    return ReactDOM.createPortal(
+      <>
+        <Backdrop opened={opened} closed={closed} />
+        <ModalWrapper opened={opened}>{children}</ModalWrapper>
+      </>,
+      document.getElementById('modal')
+    );
+  },
+  (prevProps, nextProps) => {
+    // rerender if these two props are different
+    return prevProps.opened === nextProps.opened;
+  }
+);
 
 export default Modal;

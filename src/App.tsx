@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import { isLoaded } from 'react-redux-firebase';
@@ -8,12 +8,14 @@ import {
   Login,
   Logout,
   SignUp,
-  Todos,
+  // Todos,
   VerifyEmail,
   Profile,
   RecoveryPassword,
 } from './containers';
 import { Loader } from './elements';
+import { faDivide } from '@fortawesome/free-solid-svg-icons';
+const Todos = React.lazy(() => import('./containers/Todos/Todos'));
 
 function AuthIsLoaded({ children }) {
   const auth = useSelector(state => state.firebase.auth);
@@ -37,13 +39,15 @@ const App = ({ emailVerified, loggedIn }) => {
     );
   } else if (loggedIn && emailVerified) {
     routes = (
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/todos" component={Todos} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/logout" component={Logout} />
-        <Redirect to="/" />
-      </Switch>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/todos" component={Todos} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/logout" component={Logout} />
+          <Redirect to="/" />
+        </Switch>
+      </Suspense>
     );
   } else {
     routes = (
