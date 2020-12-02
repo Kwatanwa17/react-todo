@@ -1,4 +1,3 @@
-import { getFirestore } from 'redux-firestore';
 import * as actions from './actionTypes';
 
 // Add a todo

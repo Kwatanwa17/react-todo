@@ -1,8 +1,7 @@
-import { compose, createStore, applyMiddleware } from 'redux';
+import { getFirebase } from 'react-redux-firebase';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { getFirestore, reduxFirestore } from 'redux-firestore';
 import thunk from 'redux-thunk';
-import { getFirebase, reactReduxFirebase } from 'react-redux-firebase';
-import { reduxFirestore, getFirestore } from 'redux-firestore';
-
 import firebase from '../firebase/Firebase';
 import rootReducer from './reducers';
 
@@ -18,8 +17,7 @@ declare var window: ExtendedWindow;
 //       compose
 //     : compose;
 
-const composeEnhancers =
-  (window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose) || compose;
+const composeEnhancers = (window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose) || compose;
 // const middlewares = []
 
 const middleware = [
@@ -27,9 +25,6 @@ const middleware = [
   // This is where you add other middleware like redux-observable
 ];
 
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(...middleware), reduxFirestore(firebase))
-);
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(...middleware), reduxFirestore(firebase)));
 
 export default store;

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '../../../components';
-import { ButtonWrapper, Form, FormWrapper, Heading, Message, MessageWrapper, Modal } from '../../../elements';
+import { ButtonWrapper, Form, Heading, Message, MessageWrapper, Modal } from '../../../elements';
 import { Input } from '../../../components';
 import * as actions from '../../../store/actions';
 

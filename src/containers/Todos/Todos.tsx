@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
 import 'firebase/database';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
+import styled from 'styled-components';
+import { Button } from '../../components';
 import { Container, Heading, Loader } from '../../elements';
 import InputTodo from './InputTodo/InputTodo';
 import Todo from './Todo/Todo';
-import { firestore } from 'firebase';
-import { Button } from '../../components';
 
 const Wrapper = styled.div`
   width: 100%;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-import NavItem from './NavItem/NavItem';
 import { Device } from '../../../utils';
+import NavItem from './NavItem/NavItem';
 
 type Props = {
   clicked?: (value: React.SetStateAction<boolean>) => void;
@@ -76,6 +76,6 @@ const mapStateToProps = ({ firebase }) => ({
   emailVerified: firebase.auth.emailVerified,
 });
 
-const mapDispatchToProps = {};
+// const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, null)(NavItems);

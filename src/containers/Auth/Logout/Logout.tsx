@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 
@@ -9,7 +9,7 @@ const Logout = ({ logout }) => {
   return null;
 };
 
-const mapStateToProps = state => ({});
+// const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
   logout: actions.signOut,

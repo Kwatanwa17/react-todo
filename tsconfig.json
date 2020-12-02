@@ -19,7 +19,6 @@
     "jsx": "react",
     "noImplicitAny": false,
     "strict": false,
-    "skipLibCheck": true
   },
   "include": [
     "src"

@@ -84,9 +84,9 @@ export const recoverPassword = data => async (dispatch, getState, { getFirebase 
 // edit profile action creator
 export const editProfile = data => async (dispatch, getState, { getFirebase, getFirestore }) => {
   const firebase = getFirebase();
-  const firestore = getFirestore();
+  // const firestore = getFirestore();
   const user = firebase.auth().currentUser;
-  const { uid: userId, email: userEmail } = getState().firebase.auth;
+  const { email: userEmail } = getState().firebase.auth;
   dispatch({ type: actions.PROFILE_EDIT_START });
   try {
     if (data.email !== userEmail) {

@@ -14,7 +14,6 @@ import {
   RecoveryPassword,
 } from './containers';
 import { Loader } from './elements';
-import { faDivide } from '@fortawesome/free-solid-svg-icons';
 const Todos = React.lazy(() => import('./containers/Todos/Todos'));
 
 function AuthIsLoaded({ children }) {
@@ -73,6 +72,6 @@ const mapStateToProps = ({ firebase }) => ({
   emailVerified: firebase.auth.emailVerified,
 });
 
-const mapDispatchToProps = {};
+// const mapDispatchToProps = {};
 
 export default connect(mapStateToProps)(App);
